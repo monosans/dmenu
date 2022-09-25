@@ -18,8 +18,8 @@ static int incremental = 0;                 /* -r  option; if 1, outputs text ea
 static int instant = 0;                     /* -n  option; if 1, selects matching item without the need to press enter */
 #endif // INSTANT_PATCH
 #if CENTER_PATCH
-static int center = 0;                      /* -c  option; if 0, dmenu won't be centered on the screen */
-static int min_width = 500;                 /* minimum width when centered */
+static int center = 1;                      /* -c  option; if 0, dmenu won't be centered on the screen */
+static int min_width = 100;                 /* minimum width when centered */
 #endif // CENTER_PATCH
 #if BARPADDING_PATCH
 static const int vertpad = 10;              /* vertical padding of bar */
@@ -41,7 +41,7 @@ static char *fonts[] =
 static const char *fonts[] =
 #endif // XRESOURCES_PATCH
 {
-	"monospace:size=10"
+	"sans:size=10"
 };
 #endif // PANGO_PATCH
 #if MANAGED_PATCH
@@ -100,8 +100,8 @@ const
 #endif // XRESOURCES_PATCH
 char *colors[][2] = {
 	/*               fg         bg       */
-	[SchemeNorm] = { "#bbbbbb", "#222222" },
-	[SchemeSel]  = { "#eeeeee", "#005577" },
+	[SchemeNorm] = { "#cccccc", "#181818" },
+	[SchemeSel]  = { "#181818", "#cccccc" },
 	[SchemeOut]  = { "#000000", "#00ffff" },
 	#if BORDER_PATCH
 	[SchemeBorder] = { "#000000", "#005577" },
@@ -132,7 +132,7 @@ char *colors[][2] = {
 	#endif // CARET_SCHEME_PATCH
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
-static unsigned int lines      = 0;
+static unsigned int lines      = 12;
 #if GRID_PATCH
 /* -g option; if nonzero, dmenu uses a grid comprised of columns and lines */
 static unsigned int columns    = 0;
