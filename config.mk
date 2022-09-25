@@ -8,9 +8,9 @@ MANPREFIX = $(PREFIX)/share/man
 X11INC = /usr/X11R6/include
 X11LIB = /usr/X11R6/lib
 
-# Xinerama, comment if you don't want it
-XINERAMALIBS  = -lXinerama
-XINERAMAFLAGS = -DXINERAMA
+# Xinerama, uncomment if you want it
+#XINERAMALIBS  = -lXinerama
+#XINERAMAFLAGS = -DXINERAMA
 
 # freetype
 FREETYPELIBS = -lfontconfig -lXft
@@ -23,15 +23,18 @@ FREETYPEINC = /usr/include/freetype2
 #EXTRAFLAGS=-D_GNU_SOURCE
 
 # Uncomment this for the alpha patch / ALPHA_PATCH
-XRENDER = -lXrender
+#XRENDER = -lXrender
 
 # Uncomment for the pango patch / PANGO_PATCH
 #PANGOINC = `pkg-config --cflags xft pango pangoxft`
 #PANGOLIB = `pkg-config --libs xft pango pangoxft`
 
+# Uncomment for the fuzzymatch patch / FUZZYMATCH_PATCH
+#MLIB = -lm
+
 # includes and libs
 INCS = -I$(X11INC) -I$(FREETYPEINC) ${PANGOINC}
-LIBS = -L$(X11LIB) -lX11 $(XINERAMALIBS) $(FREETYPELIBS) -lm $(XRENDER) ${PANGOLIB}
+LIBS = -L$(X11LIB) -lX11 $(XINERAMALIBS) $(FREETYPELIBS) $(MLIB) $(XRENDER) ${PANGOLIB}
 
 # flags
 CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700 -D_POSIX_C_SOURCE=200809L -DVERSION=\"$(VERSION)\" $(XINERAMAFLAGS) $(EXTRAFLAGS)
