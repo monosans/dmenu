@@ -2274,6 +2274,10 @@ main(int argc, char *argv[])
 			colors[SchemeSel][ColBg] = argv[++i];
 		else if (!strcmp(argv[i], "-sf"))  /* selected foreground color */
 			colors[SchemeSel][ColFg] = argv[++i];
+		else if (!strcmp(argv[i], "-ob"))  /* outline background color */
+			colors[SchemeOut][ColBg] = argv[++i];
+		else if (!strcmp(argv[i], "-of"))  /* outline foreground color */
+			colors[SchemeOut][ColFg] = argv[++i];
 		#if HIGHPRIORITY_PATCH
 		else if (!strcmp(argv[i], "-hb"))  /* high priority background color */
 			colors[SchemeHp][ColBg] = argv[++i];
