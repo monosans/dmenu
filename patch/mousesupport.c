@@ -152,58 +152,13 @@ clickitem(struct item *item, XButtonEvent *ev)
 	#endif // RESTRICT_RETURN_PATCH
 
 	#if !MULTI_SELECTION_PATCH
-	#if PIPEOUT_PATCH
-	if (item && !(ev->state & ShiftMask))
-	{
-		if (item->text[0] == startpipe[0]) {
-			strncpy(item->text + strlen(item->text),pipeout,8);
-			puts(item->text+1);
-		}
-		#if PRINTINDEX_PATCH
-		if (print_index) {
-			printf("%d\n", item->index);
-		} else {
-		#if SEPARATOR_PATCH
-			puts(item->text_output);
-		#else
-			puts(item->text);
-		#endif // SEPARATOR_PATCH
-		}
-		#else
-		puts(item->text);
-		#endif // PRINTINDEX_PATCH
-	} else {
-		if (text[0] == startpipe[0]) {
-			strncpy(text + strlen(text),pipeout,8);
-			puts(text+1);
-		}
-		puts(text);
-	}
-	#elif PRINTINDEX_PATCH
-	if (print_index) {
-		printf("%d\n", item->index);
-	} else {
-		#if SEPARATOR_PATCH
-		puts(item->text_output);
-		#else
-		puts(item->text);
-		#endif // SEPARATOR_PATCH
-	}
-	#elif SEPARATOR_PATCH
-	puts(item->text_output);
-	#else
-	puts(item->text);
-	#endif // PIPEOUT_PATCH | PRINTINDEX_PATCH
+	printitem(item);
 	#endif // MULTI_SELECTION_PATCH
 
 	sel = item;
 	if (!(ev->state & ControlMask)) {
-		#if NAVHISTORY_PATCH
-		savehistory(item->text);
-		#endif // NAVHISTORY_PATCH
 		#if MULTI_SELECTION_PATCH
-		selsel();
-		printsel(ev->state);
+		printselected(ev->state);
 		#endif // MULTI_SELECTION_PATCH
 		cleanup();
 		exit(0);

@@ -105,7 +105,7 @@ fuzzymatch(void)
 
 	#if INSTANT_PATCH
 	if (instant && matches && matches==matchend) {
-		puts(matches->text);
+		printitem(matches);
 		cleanup();
 		exit(0);
 	}
