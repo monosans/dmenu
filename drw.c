@@ -75,6 +75,11 @@ apply_fribidi(const char *str)
 	FriBidiParType base = FRIBIDI_PAR_ON;
 	FriBidiCharSet charset;
 
+	if (len == 0) {
+		fribidi_text[0] = 0;
+		return;
+	}
+
 	charset = fribidi_parse_charset("UTF-8");
 	len = fribidi_charset_to_unicode(charset, str, len, logical);
 	fribidi_log2vis(logical, len, &base, visual, NULL, NULL, NULL);

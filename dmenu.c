@@ -17,6 +17,7 @@
 #include <X11/Xft/Xft.h>
 
 #include "patches.h"
+
 /* Patch incompatibility overrides */
 #if MULTI_SELECTION_PATCH
 #undef NON_BLOCKING_STDIN_PATCH
@@ -327,6 +328,7 @@ static int
 drawitem(struct item *item, int x, int y, int w)
 {
 	int r;
+
 	#if TSV_PATCH && !SEPARATOR_PATCH
 	char *text = item->stext;
 	#else
@@ -611,7 +613,7 @@ drawmenu(void)
 			#endif // PANGO_PATCH
 		);
 	}
-	#else
+	#else // !PASSWORD_PATCH
 	drw_text(drw, x, 0, w, bh, lrpad / 2, text, 0
 		#if PANGO_PATCH
 		, False
@@ -2179,6 +2181,7 @@ main(int argc, char *argv[])
 		#endif // CASEINSENSITIVE_PATCH
 		#if VI_MODE_PATCH
 		} else if (!strcmp(argv[i], "-vi")) {
+			#if VI_MODE_RUNTIME_STARTING_MODE_PATCH
 			if (i + 1 < argc) {
 				if (!strcmp(argv[i+1], "0")) {
 					start_mode = 0;
@@ -2188,6 +2191,7 @@ main(int argc, char *argv[])
 					i++;
 				}
 			}
+			#endif // VI_MODE_RUNTIME_STARTING_MODE_PATCH
 			vi_mode = 1;
 			using_vi_mode = start_mode;
 			global_esc.ksym = XK_Escape;

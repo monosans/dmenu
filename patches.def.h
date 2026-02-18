@@ -379,6 +379,18 @@
  */
 #define VI_MODE_PATCH 0
 
+/* This patch adds an optional value to the -vi command line option introduced by the
+ * vi mode patch.
+ *
+ * With this we have the following command line options:
+ *   -vi   - enable vi mode, with start_mode setting determining insert or normal mode
+ *   -vi 0 - enable vi mode starting in insert mode
+ *   -vi 1 - enable vi mode starting in normal mode
+ *
+ * This patch is made by https://github.com/nimaaskarian
+ */
+#define VI_MODE_RUNTIME_STARTING_MODE_PATCH 0
+
 /* Adds extended window manager hints such as _NET_WM_WINDOW_TYPE and _NET_WM_WINDOW_TYPE_DOCK.
  * https://github.com/Baitinq/dmenu/blob/master/patches/dmenu-wm_type.diff
  */
